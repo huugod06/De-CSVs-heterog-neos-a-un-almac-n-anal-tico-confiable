@@ -1,0 +1,5 @@
+# Dependencias del proyecto
+streamlit
+pandas
+pyarrow
+python-dateutil
