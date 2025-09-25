@@ -75,7 +75,14 @@ El objetivo es demostrar la capacidad de implementar un pipeline reproducible, t
 | Documentación y README final  | 2 h             |
 | **Total**                     | **18 h aprox.** |
 
----
+## 6. Decisiones de diseño (5V)
+
+- **Volumen**: Los CSV son medianos → se procesan con pandas; se usan capas Bronze/Silver para manejar escalabilidad.
+- **Velocidad**: Procesamiento batch en memoria; Streamlit da resultados inmediatos.
+- **Variedad**: Los CSV traen columnas distintas → se usa un mapeo origen→canónico y normalización de fechas/amount.
+- **Veracidad**: Validaciones implementadas (`basic_checks`), linaje (`source_file`, `ingested_at`).
+- **Valor**: Agregación en Silver (partner × mes), KPIs y gráfico → insights claros.
+
 
 📌 **Recomendación:** trabajar por ramas (`feature/ingesta`, `feature/streamlit`, etc.) y hacer *pull requests* revisables.  
 
