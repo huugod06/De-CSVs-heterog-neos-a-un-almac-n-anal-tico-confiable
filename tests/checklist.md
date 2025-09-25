@@ -3,14 +3,14 @@
 > Archivo: `tests/checklist.md`
 
 ## 1) Despliegue y acceso
-- [ ] **URL de Streamlit funcional** (pública y accesible).
+- [x] **URL de Streamlit funcional** (pública y accesible).
   - URL: `https://...`
   - [ ] La app carga sin errores.
   - [ ] Se pueden subir CSV y ver resultados.
 
 ## 2) Artefactos de datos
-- [ ] **`bronze.csv`** generado y subido a **`/data/bronze/bronze.csv`**.
-- [ ] **`silver.csv`** generado y subido a **`/data/silver/silver.csv`**.
+- [x] **`bronze.csv`** generado y subido a **`/data/bronze/bronze.csv`**.
+- [x] **`silver.csv`** generado y subido a **`/data/silver/silver.csv`**.
 - [ ] Columnas canónicas presentes en Bronze: `date, partner, amount, source_file, ingested_at`.
 - [ ] Silver agregado por `month × partner` con `amount` sumado.
 
