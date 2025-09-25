@@ -1,7 +1,12 @@
 # De CSVs heterogéneos a un almacén analítico confiable  
 **Repositorio:** `bigdata-storage-lab-<dedios>`
 
----
+## Evidencia de funcionamiento
+
+La app desplegada en Streamlit permite cargar CSVs, validarlos y derivar Bronze/Silver:
+
+![App funcionando](docs/captura_app.png)
+
 
 ## 1. Objetivo
 
@@ -82,6 +87,8 @@ El objetivo es demostrar la capacidad de implementar un pipeline reproducible, t
 - **Variedad**: Los CSV traen columnas distintas → se usa un mapeo origen→canónico y normalización de fechas/amount.
 - **Veracidad**: Validaciones implementadas (`basic_checks`), linaje (`source_file`, `ingested_at`).
 - **Valor**: Agregación en Silver (partner × mes), KPIs y gráfico → insights claros.
+
+
 
 
 📌 **Recomendación:** trabajar por ramas (`feature/ingesta`, `feature/streamlit`, etc.) y hacer *pull requests* revisables.  
