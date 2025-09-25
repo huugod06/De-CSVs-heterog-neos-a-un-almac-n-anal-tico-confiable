@@ -1,0 +1,7 @@
+date,partner,amount,source_file,ingested_at
+2025-05-01,ACME Corp,1250.75,ventas_mes_fixed.csv,2025-09-25T08:27:59.691279+00:00
+2025-05-05,Globex S.A.,99.9,ventas_mes_fixed.csv,2025-09-25T08:27:59.691279+00:00
+2025-05-12,Initech,1999.0,ventas_mes_fixed.csv,2025-09-25T08:27:59.691279+00:00
+2025-05-18,ACME Corp,250.0,ventas_mes_fixed.csv,2025-09-25T08:27:59.691279+00:00
+2025-05-22,Stark Industries,3450.1,ventas_mes_fixed.csv,2025-09-25T08:27:59.691279+00:00
+2025-05-28,Wayne Enterprises,1250.75,ventas_mes_fixed.csv,2025-09-25T08:27:59.691279+00:00
