@@ -87,6 +87,32 @@ El objetivo es demostrar la capacidad de implementar un pipeline reproducible, t
 - **Variedad**: Los CSV traen columnas distintas → se usa un mapeo origen→canónico y normalización de fechas/amount.
 - **Veracidad**: Validaciones implementadas (`basic_checks`), linaje (`source_file`, `ingested_at`).
 - **Valor**: Agregación en Silver (partner × mes), KPIs y gráfico → insights claros.
+## 7📝 Prompts de reflexión (con respuestas modelo)
+
+1. **V dominante hoy y V dominante si 2× tráfico**  
+   Hoy la **Variedad** es la V dominante: recibimos CSVs con columnas y formatos distintos que requieren normalización.  
+   Si el tráfico se duplicara, la **Velocidad** sería dominante, porque el reto pasaría a ser procesar los archivos en menos tiempo sin colapsar la app.  
+   La arquitectura tendría que optimizar el pipeline para mantener la experiencia fluida.
+
+2. **Trade-off elegido (ej.: más compresión vs CPU)**  
+   Se priorizó **guardar los CSV normalizados sin compresión**, para ahorrar CPU en la app y reducir la latencia al descargar.  
+   El trade-off es ocupar más espacio en disco, pero mediremos este impacto revisando el tamaño acumulado de `/data/bronze` y `/data/silver`.  
+   Si el crecimiento fuera excesivo, se evaluará un formato columnar (Parquet) con compresión ligera.
+
+3. **Por qué “inmutable + linaje” mejora veracidad y qué coste añade**  
+   Mantener los datos inmutables y con **linaje (`source_file`, `ingested_at`)** asegura que podemos auditar cualquier KPI hasta su origen.  
+   Esto mejora la **veracidad**, porque cada cifra tiene trazabilidad completa.  
+   El coste añadido es más almacenamiento (cada ingesta conserva duplicados) y mayor complejidad en la gestión de metadatos.
+
+4. **KPI principal y SLA del dashboard**  
+   - **KPI**: Total de ventas mensuales por partner.  
+   - **SLA (latencia)**: actualización en menos de **1 minuto** tras subir un nuevo CSV.  
+   - Esto habilita decisiones rápidas de negocio (ej. detectar partners más activos en el mes) y justifica que la latencia sea baja: la app debe ser interactiva, no batch.
+
+5. **Riesgo principal del diseño y mitigación técnica concreta**  
+   Riesgo: **errores de parseo en fechas/amount** al recibir CSVs con formatos inesperados.  
+   Mitigación: usar `pd.to_datetime(errors="coerce")` y normalización de montos en `normalize_columns`, además de reportar validaciones fallidas en pantalla.  
+   Con esto evitamos que un archivo corrupto bloquee el pipeline y damos feedback inmediato al usuario.
 
 
 
